@@ -37,7 +37,7 @@ plt.show()
 from sklearn.neighbors import KNeighborsClassifier
 from time import time
 
-clf = KNeighborsClassifier(n_neighbors=40,weights='distance')
+clf = KNeighborsClassifier(n_neighbors=10,weights='distance')
 
 print "*************KNN Classifier***************"
 t0 = time()
@@ -51,8 +51,20 @@ print "testing time:",round(time()-t1,3),"s"
 print "accuracy:",clf.score(features_test,labels_test)
 
 
+from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier(n_estimators=10,max_features='auto',min_samples_split=40)
 
+print "****************Random Forest Classifier*****************"
 
+t0 = time()
+clf.fit(features_train,labels_train)
+print "training time:",round(time()-t0,3),"s"
+
+t1 = time()
+clf.predict(features_test)
+print "testing time:",round(time()-t1,3),"s"
+
+print "accuracy:",clf.score(features_test,labels_test)
 
 
 
