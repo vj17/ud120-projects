@@ -51,6 +51,7 @@ print "testing time:",round(time()-t1,3),"s"
 print "accuracy:",clf.score(features_test,labels_test)
 
 
+# Random Forest Classifier
 from sklearn.ensemble import RandomForestClassifier
 clf = RandomForestClassifier(n_estimators=10,max_features='auto',min_samples_split=40)
 
@@ -67,6 +68,21 @@ print "testing time:",round(time()-t1,3),"s"
 print "accuracy:",clf.score(features_test,labels_test)
 
 
+# AdaBoost Classifier
+from sklearn.ensemble import AdaBoostClassifier
+clf = AdaBoostClassifier(base_estimator=None,n_estimators=70,learning_rate=1)
+
+print "********************AdaBoost Classifier*********************"
+
+t0 = time()
+clf.fit(features_train,labels_train)
+print "training time:",round(time()-t0,3),"s"
+
+t1 = time()
+clf.predict(features_test)
+print "testing time:",round(time()-t0,3),"s"
+
+print "accuracy:",clf.score(features_test,labels_test)
 
 """
 try:
