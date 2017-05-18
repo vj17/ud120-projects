@@ -44,6 +44,9 @@ test_color = "r"
 print "Slope:",reg.coef_
 print "Intercept:",reg.intercept_
 
+print "Score on the training data:",reg.score(feature_train,target_train)
+print "Score on the testing data:",reg.score(feature_test,target_test)
+
 ### draw the scatterplot, with color-coded training and testing points
 import matplotlib.pyplot as plt
 for feature, target in zip(feature_test, target_test):
