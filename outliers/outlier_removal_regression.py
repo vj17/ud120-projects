@@ -31,12 +31,12 @@ reg.fit(ages_train,net_worths_train)
 print "Slope:",reg.coef_
 print "Score:",reg.score(ages_test,net_worths_test)
 
-#try:
-#    plt.plot(ages, reg.predict(ages), color="blue")
-#except NameError:
-#    pass
-#plt.scatter(ages, net_worths)
-#plt.show()
+try:
+    plt.plot(ages, reg.predict(ages), color="blue")
+except NameError:
+    pass
+plt.scatter(ages, net_worths)
+plt.show()
 
 
 ### identify and remove the most outlier-y points
@@ -44,7 +44,6 @@ cleaned_data = []
 try:
     predictions = reg.predict(ages_train)
     cleaned_data = outlierCleaner( predictions, ages_train, net_worths_train )
-    print cleaned_data
 except NameError:
     print "your regression object doesn't exist, or isn't name reg"
     print "can't make predictions to use in identifying outliers"
@@ -60,6 +59,7 @@ if len(cleaned_data) > 0:
     try:
         reg.fit(ages, net_worths)
 	print "Slope after removing outliers:",reg.coef_
+	print "Score after removing outliers:",reg.score(ages_test,net_worths_test)
         plt.plot(ages, reg.predict(ages), color="blue")
     except NameError:
         print "you don't seem to have regression imported/created,"
